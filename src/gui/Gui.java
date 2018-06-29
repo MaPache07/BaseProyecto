@@ -52,30 +52,40 @@ public class Gui extends JFrame{
         public void keyPressed(KeyEvent e) {
 
             int key = e.getKeyCode();
-            
+            int difx = (int) Math.sqrt(Math.pow(m.getX()-n.getX(), 2));
+            int dify = (int) Math.sqrt(Math.pow(m.getY()-n.getY(), 2));
+            System.out.println(difx);
+            System.out.println(dify);
             if (key == KeyEvent.VK_LEFT) {
                 if (m.getX() >= 10 && m.getX() < 300) {
-                    m.setIcon(new ImageIcon(getClass().getResource("Left.png")));
-                    m.setBounds(m.getX() - 10, m.getY(), WIDTH, HEIGHT);
+                    if((m.getX()-30 > n.getX() || m.getX() < n.getX()) || dify > 30){
+                        m.setIcon(new ImageIcon(getClass().getResource("Left.png")));
+                        m.setBounds(m.getX() - 10, m.getY(), WIDTH, HEIGHT);
+                    }
                 }
-
             }
             if (key == KeyEvent.VK_RIGHT) {
                 if (m.getX() >= 0 && m.getX() <= 250) {
-                    m.setIcon(new ImageIcon(getClass().getResource("Right.png")));
-                    m.setBounds(m.getX() + 10, m.getY(), WIDTH, HEIGHT);
+                    if((m.getX()+30 < n.getX() || m.getX() > n.getX()) || dify > 30){
+                        m.setIcon(new ImageIcon(getClass().getResource("Right.png")));
+                        m.setBounds(m.getX() + 10, m.getY(), WIDTH, HEIGHT);
+                    }
                 }
             }
             if (key == KeyEvent.VK_UP) {
                 if (m.getY() >= 10 && m.getY() < 300) {
-                    m.setIcon(new ImageIcon(getClass().getResource("Up.png")));
-                    m.setBounds(m.getX(), m.getY() - 10, WIDTH, HEIGHT);
+                    if((m.getY()-30 > n.getY() || m.getY() < n.getY()) || difx > 30){
+                        m.setIcon(new ImageIcon(getClass().getResource("Up.png")));
+                        m.setBounds(m.getX(), m.getY() - 10, WIDTH, HEIGHT);
+                    }
                 }
             }
             if (key == KeyEvent.VK_DOWN) {
                 if (m.getY() >= 0 && m.getY() <= 220) {
-                    m.setIcon(new ImageIcon(getClass().getResource("Down.png")));
-                    m.setBounds(m.getX(), m.getY() + 10, WIDTH, HEIGHT);
+                    if((m.getY()+30 < n.getY() || m.getY() > n.getY()) || difx > 30){
+                        m.setIcon(new ImageIcon(getClass().getResource("Down.png")));
+                        m.setBounds(m.getX(), m.getY() + 10, WIDTH, HEIGHT);
+                    }
                 }
             }
         }
