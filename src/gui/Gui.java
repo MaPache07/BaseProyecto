@@ -38,7 +38,7 @@ public class Gui extends JFrame{
         container.add(m);
         
         m.setIcon(new ImageIcon(getClass().getResource("Down.png")));
-        m.setBounds(135, 10, WIDTH, HEIGHT);
+        m.setBounds(130, 10, WIDTH, HEIGHT);
         
         n.setIcon(new ImageIcon(getClass().getResource("ERight.png")));
         n.setBounds(10, 150, WIDTH, HEIGHT);
@@ -54,11 +54,9 @@ public class Gui extends JFrame{
             int key = e.getKeyCode();
             int difx = (int) Math.sqrt(Math.pow(m.getX()-n.getX(), 2));
             int dify = (int) Math.sqrt(Math.pow(m.getY()-n.getY(), 2));
-            System.out.println(difx);
-            System.out.println(dify);
             if (key == KeyEvent.VK_LEFT) {
                 if (m.getX() >= 10 && m.getX() < 300) {
-                    if((m.getX()-30 > n.getX() || m.getX() < n.getX()) || dify > 30){
+                    if((m.getX()-30 > n.getX() || m.getX() < n.getX()) || dify >= 30){
                         m.setIcon(new ImageIcon(getClass().getResource("Left.png")));
                         m.setBounds(m.getX() - 10, m.getY(), WIDTH, HEIGHT);
                     }
@@ -66,7 +64,7 @@ public class Gui extends JFrame{
             }
             if (key == KeyEvent.VK_RIGHT) {
                 if (m.getX() >= 0 && m.getX() <= 250) {
-                    if((m.getX()+30 < n.getX() || m.getX() > n.getX()) || dify > 30){
+                    if((m.getX()+30 < n.getX() || m.getX() > n.getX()) || dify >= 30){
                         m.setIcon(new ImageIcon(getClass().getResource("Right.png")));
                         m.setBounds(m.getX() + 10, m.getY(), WIDTH, HEIGHT);
                     }
@@ -74,7 +72,7 @@ public class Gui extends JFrame{
             }
             if (key == KeyEvent.VK_UP) {
                 if (m.getY() >= 10 && m.getY() < 300) {
-                    if((m.getY()-30 > n.getY() || m.getY() < n.getY()) || difx > 30){
+                    if((m.getY()-30 > n.getY() || m.getY() < n.getY()) || difx >= 30){
                         m.setIcon(new ImageIcon(getClass().getResource("Up.png")));
                         m.setBounds(m.getX(), m.getY() - 10, WIDTH, HEIGHT);
                     }
@@ -82,7 +80,7 @@ public class Gui extends JFrame{
             }
             if (key == KeyEvent.VK_DOWN) {
                 if (m.getY() >= 0 && m.getY() <= 220) {
-                    if((m.getY()+30 < n.getY() || m.getY() > n.getY()) || difx > 30){
+                    if((m.getY()+30 < n.getY() || m.getY() > n.getY()) || difx >= 30){
                         m.setIcon(new ImageIcon(getClass().getResource("Down.png")));
                         m.setBounds(m.getX(), m.getY() + 10, WIDTH, HEIGHT);
                     }

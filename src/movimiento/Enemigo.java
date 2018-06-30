@@ -36,7 +36,7 @@ public class Enemigo extends Thread{
                 ball.setIcon(new ImageIcon(getClass().getResource("ERight.png")));
                 this.ball.setLocation(i, y);
                 float v = (float) Math.sqrt(Math.pow(flecha.getX()-ball.getX(), 2)+Math.pow(flecha.getY()-ball.getY(), 2));
-                if(v <= 100){
+                if(v <= 50){
                     flag = false;
                     break;
                 }
@@ -54,7 +54,7 @@ public class Enemigo extends Thread{
                 this.ball.setLocation(i, y);
                 ball.setIcon(new ImageIcon(getClass().getResource("ELeft.png")));
                 float v = (float) Math.sqrt(Math.pow(flecha.getX()-ball.getX(), 2)+Math.pow(flecha.getY()-ball.getY(), 2));
-                if(v <= 100){
+                if(v <= 50){
                     flag = false;
                     break;
                 }
@@ -73,113 +73,66 @@ public class Enemigo extends Thread{
     }
     
     public void Seguir(){
-        
+        int difx, dify;
         while(true){
+            System.out.println("Hola");
             if(ball.getX() < flecha.getX()){
-                for(int i = ball.getX(); i < flecha.getX(); i += 10){
-                    if(ball.getX() < flecha.getX()-30){
-                        break;
-                    }
-                    System.out.println("Derecha");
-                    ball.setIcon(new ImageIcon(getClass().getResource("ERight.png")));
-                    this.ball.setLocation(i, y);
-                    x = i;
-                    try {
-                        sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    int dif = flecha.getX()-ball.getX();
-                    if(dif < 10 && dif > 0){
+                for(int i = ball.getX(); i <= flecha.getX(); i += 10){
+                    dify = (int) Math.sqrt(Math.pow(ball.getY()-flecha.getY(), 2));
+                    if((ball.getX()+30 < flecha.getX()) || dify >= 30){
                         ball.setIcon(new ImageIcon(getClass().getResource("ERight.png")));
-                        this.ball.setLocation(i+dif, y);
+                        this.ball.setLocation(i, y);
+                        x = i;
                         try {
                             sleep(75);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        x = i+dif;
                     }
                 }
             }
             if(ball.getX() > flecha.getX()){
-                for(int i = ball.getX(); i > flecha.getX(); i -= 10){
-                    if(ball.getX() > flecha.getX()+30){
-                        break;
-                    }
-                    System.out.println("Izquierda");
-                    ball.setIcon(new ImageIcon(getClass().getResource("ELeft.png")));
-                    this.ball.setLocation(i, y);
-                    x = i;
-                    try {
-                        sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    int dif = ball.getX()-flecha.getX();
-                    if(dif < 10 && dif > 0){
+                for(int i = ball.getX(); i >= flecha.getX(); i -= 10){
+                    dify = (int) Math.sqrt(Math.pow(ball.getY()-flecha.getY(), 2));
+                    if((ball.getX()-30 > flecha.getX()) || dify >= 30){
                         ball.setIcon(new ImageIcon(getClass().getResource("ELeft.png")));
-                        this.ball.setLocation(i-dif, y);
+                        this.ball.setLocation(i, y);
+                        x = i;
                         try {
                             sleep(75);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        x = i-dif;
                     }
                 }
             }
             if(ball.getY() < flecha.getY()){
-                for(int j = ball.getY(); j < flecha.getY(); j += 10){
-                    if(ball.getY() < flecha.getY()-30){
-                        break;
-                    }
-                    System.out.println("Abajo");
-                    ball.setIcon(new ImageIcon(getClass().getResource("EDown.png")));
-                    this.ball.setLocation(x, j);
-                    y = j;
-                    try {
-                        sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    int dif = flecha.getY()-ball.getY();
-                    if(dif < 10 && dif > 0){
+                for(int j = ball.getY(); j <= flecha.getY(); j += 10){
+                    difx = (int) Math.sqrt(Math.pow(ball.getX()-flecha.getX(), 2));
+                    if((ball.getY()+30 < flecha.getY()) || difx >= 30){
                         ball.setIcon(new ImageIcon(getClass().getResource("EDown.png")));
-                        this.ball.setLocation(x, j+dif);
+                        this.ball.setLocation(x, j);
+                        y = j;
                         try {
                             sleep(75);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        y = j+dif;
                     }
                 }
             }
             if(ball.getY() > flecha.getY()){
-                for(int j = ball.getY(); j > flecha.getY(); j -= 10){
-                    if(ball.getY() > flecha.getY()+30){
-                        break;
-                    }
-                    System.out.println("Arriba");
-                    ball.setIcon(new ImageIcon(getClass().getResource("EUp.png")));
-                    this.ball.setLocation(x, j);
-                    y = j;
-                    try {
-                        sleep(75);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    int dif = ball.getY()-flecha.getY();
-                    if(dif < 10 && dif > 0){
+                for(int j = ball.getY(); j >= flecha.getY(); j -= 10){
+                    difx = (int) Math.sqrt(Math.pow(ball.getX()-flecha.getX(), 2));
+                    if((ball.getY()-30 > flecha.getY()) || difx >= 30){
                         ball.setIcon(new ImageIcon(getClass().getResource("EUp.png")));
-                        this.ball.setLocation(x, j-dif);
+                        this.ball.setLocation(x, j);
+                        y = j;
                         try {
                             sleep(75);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        y = j-dif;
                     }
                 }
             }
